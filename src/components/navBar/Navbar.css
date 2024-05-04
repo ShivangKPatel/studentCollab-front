@@ -1,0 +1,19 @@
+#cont {
+     margin-top: 20px;
+}
+
+#navTag {
+     padding: 10px 10px 10px 10px;
+     border-bottom: 2px solid black;
+}
+
+
+
+.navBtn:hover{
+     background-color: black;
+     color: white;
+}
+
+.navBtn.a:hover{
+     color: white;
+}

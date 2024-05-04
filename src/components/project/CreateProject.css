@@ -1,0 +1,22 @@
+#projectdef,
+#projectdesc {
+     resize: none;
+}
+
+#c-title {
+     text-align: center;
+     overflow: hidden;
+}
+
+#c {
+     width: 100%;
+     max-width: 950px;
+     height: 100%;
+     margin: 0 auto;
+     border: 2px solid black;
+     padding: 10px;
+}
+
+#cbody {
+     width: 100%;
+}
