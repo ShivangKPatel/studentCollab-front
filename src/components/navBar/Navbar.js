@@ -1,29 +1,32 @@
 import React from 'react';
 import './Navbar.css';
 import { Link, defer, useLocation, useNavigate } from 'react-router-dom';
-import Landingpage from '../landPage/Landingpage';
 
 export default function Navbar(props) {
     const navigation = useNavigate();
     const location = useLocation();
-    let logFlag = props.isLogIn;
-    let userData = props.logUser;
+    let isLogedIn = props.isLogedIn;
+    let logUserData = props.logUserData;
+    
     if(location.state){
-        logFlag =  location.state.isLogIn;
-        userData = location.state.logUser;
+        isLogedIn = location.state.isLogedIn;
+        logUserData = location.state.logUserData;
     }
     const toPrj = () => {
-        if(logFlag == "1"){
-            navigation('/project', { state: { isLogIn: "1", logUserData: userData } });
+        if(isLogedIn == "1"){
+            navigation('/project', { state: { isLogedIn: "1", logUserData: logUserData } });
         }else{
-            navigation('/project', {state: {isLogIn: "0"}})
+            navigation('/project', {state: { isLogedIn: "0" }})
         }
     }
     const logPressed = () => {
         navigation('/home');
     }
     const toDash = () => {
-        navigation('/dashboard', { state: { isLogIn: props.isLogIn, logUserData: props.logUser } });
+        navigation('/dashboard', { state: { isLogedIn: isLogedIn, logUserData: logUserData }});
+    }
+    const toAbout = () => {
+        navigation('/aboutus', {state: { isLogedIn: isLogedIn, logUserData: logUserData }});
     }
     return (
         <>
@@ -41,7 +44,7 @@ export default function Navbar(props) {
                             <ul className="navbar-nav mb-2 mb-lg-0" style={{ padding: "0px 4px 1px 0px" }}>
                                 <li className="nav-item">
                                     {
-                                        logFlag == "0" ?
+                                        isLogedIn == "0" ?
                                             // <button className="nav-link active" onClick={toPrj}>home</button>
                                             <Link to="/home" className="nav-link active">Home</Link>
                                             :
@@ -52,10 +55,11 @@ export default function Navbar(props) {
                                     <button className="nav-link active" onClick={toPrj}>Project</button>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link active" href="/aboutus">About us</a>
+                                    <button className="nav-link active" onClick={toAbout}>About us</button>
+                                    {/* <a className="nav-link active" href="/aboutus">About us</a> */}
                                 </li>
                                 <>
-                                    {props.isLogIn === "0" ?
+                                    {isLogedIn == "0" ?
                                         <li className="nav-item" style={{ backgroundColor: "black", width: "80px", textAlign: "center", marginLeft: "10px" }}>
                                             <a className="nav-link active" href="/login" style={{ color: "white"}}>Login</a>
                                         </li>
@@ -75,5 +79,5 @@ export default function Navbar(props) {
 }
 
 Navbar.defaultProps = {
-    logUser: {}
-}   
+    logUserData: {}
+}

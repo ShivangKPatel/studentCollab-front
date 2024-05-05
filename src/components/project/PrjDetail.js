@@ -6,9 +6,9 @@ import { useLocation } from "react-router-dom";
 
 export default function PrjDetail() {
      const location = useLocation();
-     const logFlag = location.state.isLogIn;
-     const userData = location.state.logUserData
-     const subproject = location.state.project
+     const logFlag = location.state.isLogedIn;
+     const userData = location.state.logUserData;
+     const subproject = location.state.selectedProject;
      return (
           <>
                <Navbar isLogIn={logFlag} />
@@ -18,14 +18,10 @@ export default function PrjDetail() {
                          height: "92.5vh",
                          padding: "0px"
                     }}>
-                         {
-                              logFlag == "1" ? <PrjDetailNav isLogIn={logFlag} logUserData={userData}> </PrjDetailNav> : <PrjDetailNav isLogIn={logFlag} />
-                         }
+                         <PrjDetailNav isLogedIn={logFlag} logUserData={userData}> </PrjDetailNav> 
                     </div>
                     <div class="col-9">
-                         {
-                              logFlag == "1" ? <PrjDetailWin isLogIn={logFlag} logUserData={userData} subproject={subproject}> </PrjDetailWin> : <PrjDetailWin isLogIn={logFlag} subproject={subproject} />
-                         }
+                         <PrjDetailWin isLogedIn={logFlag} logUserData={userData} subproject={subproject}> </PrjDetailWin>
                     </div>
                </div>
           </>

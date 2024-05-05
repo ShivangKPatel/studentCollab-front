@@ -1,0 +1,30 @@
+.no-right-radius {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.register-button {
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.welcome-quote{
+    padding-top: 0;
+    margin-top: 1rem;
+}
+.welcome-image{
+    margin-top: 2.5rem;
+}
+.register-button:hover {
+    background-color: #0056b3;
+}
+.box2 {
+    width: 750px; /* Adjusted width */
+    height: 530px; /* Adjusted height */
+    border: 1px solid #ccc;
+    border-radius: 15px; /* Added border radius */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.361);
+}

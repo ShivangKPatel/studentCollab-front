@@ -43,7 +43,7 @@ export default function PrjDetailNav(props) {
      }
      const navigation = useNavigate();
      const handleProjectDetail = (project) => {
-          navigation('/projecttile', { state: { isLogIn: props.isLogIn, logUserData: props.logUser, project: project } });
+          navigation('/projecttile', { state: { isLogedIn: props.isLogedIn, logUserData: props.logUserData, selectedProject: project } });
           window.location.reload();
      }
      return (

@@ -5,7 +5,6 @@ import addPrj from "./CreateProject";
 import { useNavigate } from "react-router-dom";
 
 export default function FilterPanel(props) {
-     console.log(props.isLogIn)
      const navigation = useNavigate();
      const [data, setData] = useState(null);
      useEffect(() => {
@@ -111,14 +110,14 @@ export default function FilterPanel(props) {
           return stars;
      }
 
-     const addPrj = () => {
-          console.log(props.isLogIn)
-          if (props.isLogIn == 0) {
+     const addPrj = () => {          
+          if (props.isLogedIn == 0) {
                alert("Please log in to add project");
           } else {
-               navigation('/addproject', { state: { isLogIn: props.isLogIn } });
+               navigation('/addproject', { state: { isLogedIn: props.isLogedIn, logUserData: props.logUserData } });
           }
      }
+
      return (
           <>
                <div className="flex-column" style={{ paddingTop: "5px", paddingLeft: "30px", paddingRight: "30px", overflowY: "auto", maxHeight: "85vh" }}>
@@ -338,26 +337,6 @@ export default function FilterPanel(props) {
                               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
                               <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
                          </svg>Add project
-                         {/* {
-                              props.isLogin == 0 ?  
-                              <a href="/addproject" className="nav-link disable" style={{ textDecoration: "none", color: "blue" }}>
-                                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16" style={{ marginBottom: "5px", marginRight: "10px" }}>
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                                   </svg>Add project
-                              </a> : <a href="/addproject" style={{ textDecoration: "none", color: "blue" }}>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16" style={{ marginBottom: "5px", marginRight: "10px" }}>
-                                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                              </svg>Add project
-                         </a>
-                         } */}
-                         {/* <a href="/addproject" style={{ textDecoration: "none", color: "blue" }}>
-                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16" style={{ marginBottom: "5px", marginRight: "10px" }}>
-                                   <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
-                                   <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
-                              </svg>Add project
-                         </a> */}
                     </button>
                </div>
           </>

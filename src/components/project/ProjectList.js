@@ -7,26 +7,21 @@ import { useLocation } from "react-router-dom";
 
 export default function ProjectList() {
      const location = useLocation();
-     const logFlag = location.state.isLogIn;
-     const userData = location.state.logUserData
+     const logFlag = location.state.isLogedIn;
+     const userData = location.state.logUserData;
      return (
           <>
-               <Navbar isLogIn={logFlag}/>
+               <Navbar isLogedIn={logFlag}/>
                <div className="row">
                     <div class="col-3" style={{
                          borderRight: "2px solid black",
                          height: "92.5vh",
                          padding: "0px"
                     }}>
-                         {
-                              logFlag == "1" ? <FilterPanel isLogIn={logFlag} logUserData={userData}></FilterPanel> : <FilterPanel isLogIn={logFlag}/>
-                         }
+                        <FilterPanel isLogedIn={logFlag} logUserData={userData}></FilterPanel>
                     </div>
                     <div class="col-9" style={{backgroundColor: "white"}}>
-                         {
-                              logFlag == "1" ? <ProjectWindow isLogIn={logFlag} logUserData={userData}></ProjectWindow> : <ProjectWindow  isLogIn={logFlag}/>
-                         }
-                         
+                        <ProjectWindow isLogedIn={logFlag} logUserData={userData}></ProjectWindow> 
                     </div>
                </div>
           </>

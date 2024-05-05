@@ -3,9 +3,11 @@ import "./CreateProject.css"
 import Navbar from "../navBar/Navbar"
 import axios from "axios"
 import { useEffect, useState } from "react"
+import { useLocation } from "react-router-dom";
 
 export default function CreateProject() {
     const [data, setData] = useState(null);
+    const location = useLocation();
     useEffect(() => {
         axios.get("http://localhost:3010/user/getAllDepartments")
             .then((response) => {
@@ -17,8 +19,12 @@ export default function CreateProject() {
     }, []);
     const subPrj = () => {
         const form = document.getElementById("newPrjCreateForm");
+        if(!form.checkValidity()){
+            form.reportValidity();
+            return;
+        }
         const formData = new URLSearchParams(new FormData(form));
-        formData.append("hostedBy", 3);
+        formData.append("hostedBy", location.state.logUserData.student_id);
         formData.delete("requiredDep");
         const selectElement = document.getElementById('department');
         // Get an array of selected option elements
@@ -30,15 +36,10 @@ export default function CreateProject() {
         axios.post("http://localhost:3010/project/createProject", formData)
             .then((response) => {
                 alert(response.data.msg)
-                
             })
             .catch((error) => {
                 console.log(error);
             });
-        
-        // console.log(selectedValues[1] +" First Val")
-        // console.log(selectedValues.toString());
-        // console.log(formData.get("student_id"));
     }
     return (
         <>
@@ -52,12 +53,12 @@ export default function CreateProject() {
                             <div className="row mb-3">
                                 <div className="col">
                                     <label for="projectname" className="form-label" >Project name</label>
-                                    <input type="text" className="form-control" id="projectname" placeholder="Enter your project name" name="projectName" />
+                                    <input type="text" className="form-control" id="projectname" placeholder="Enter your project name" spellCheck='false' name="projectName" required/>
                                 </div>
                                 <div className="col">
-                                    <label for="hostby" className="form-label">Hoste name</label>
-                                    <input type="email" className="form-control" id="hostby" placeholder="Enter host name" disabled
-                                        value="Shivam" />
+                                    <label for="hostby" className="form-label">Host name</label>
+                                    <input type="email" className="form-control" id="hostby" disabled
+                                        value={location.state.logUserData.username} />
                                 </div>
                             </div>
 
@@ -65,12 +66,12 @@ export default function CreateProject() {
                                 <div className="col">
                                     <label for="projectdef" className="form-label">Project Definition</label>
                                     <textarea name="projectDefination" id="projectdef" cols="10" rows="5" className="form-control"
-                                        placeholder="Enter project definition upto 150 words."></textarea>
+                                        placeholder="Enter project definition upto 150 words." required></textarea>
                                 </div>
                                 <div className="col">
                                     <label for="projectdesc" className="form-label">Project Description</label>
-                                    <textarea name="projectDescription" id="projectdesc" cols="10" rows="5" className="form-label form-control"
-                                        placeholder="Enter project description"></textarea>
+                                    <textarea name="projectDescription" id="projectdesc" cols="10" rows="5" className="form-label form-control" minLength={250}
+                                        placeholder="Enter project description (at least 250 words)" spellCheck="true" required></textarea>
                                 </div>
                             </div>
 
@@ -87,7 +88,7 @@ export default function CreateProject() {
 
                                 <div className="col">
                                     <label for="totalstu" className="form-label">Team size</label>
-                                    <input type="number" className="form-control" id="totalstu" placeholder="Total required students" name="noOfStudentRequired" />
+                                    <input type="number" className="form-control" id="totalstu" placeholder="Total required students" name="noOfStudentRequired" required/>
                                 </div>
                             </div>
 

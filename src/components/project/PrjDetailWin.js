@@ -28,9 +28,7 @@ export default function PrjDetailWin(props) {
      const [prjList, setData] = useState(null);
      const [loading, setLoading] = useState(true);
      const [userData, setUserData] = useState({}); // State to store user data
-     const logFlag = props.isLogIn;
      const projectID = props.subproject
-     const project = props.subproject;
      // alert(logFlag)
      // const logFlag = location.state.isLogIn;
      // const projectID = location.state.subproject;

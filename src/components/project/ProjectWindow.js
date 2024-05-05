@@ -64,7 +64,7 @@ export default function ProjectWindow(props) {
      }
      const navigation = useNavigate();
      const handleProjectDetail = (project) => {
-          navigation('/projecttile', { state: { isLogIn: props.isLogIn, logUserData: props.logUser, project: project } });
+          navigation('/projecttile', { state: { isLogedIn: props.isLogedIn, logUserData: props.logUserData, selectedProject: project } });
           console.log("Clicked project details:", project);
      }
      // console.log(prjList)

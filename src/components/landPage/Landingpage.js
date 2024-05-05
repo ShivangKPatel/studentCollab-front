@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 export default function Landingpage(props) {
      const navigation = useNavigate();
      const toPrj = () => {
-          navigation('/project', { state: { isLogIn: props.isLogIn } });
+          navigation('/project', { state: { isLogedIn: props.isLogedIn } });
      }
 
      return (
           <>
-               <Navbar isLogIn={props.isLogIn} />
+               <Navbar isLogedIn={props.isLogedIn} />
                <div className="text-center" style={{ padding: "0px 0px 0px 0px", margin: "20px auto", width: "90%", marginTop: "130px"}}>
                     <div className="row" style={{ marginLeft: "0px"}}>
                          <div className="col-6">
@@ -29,3 +29,7 @@ export default function Landingpage(props) {
           </>
      )
 }
+
+Landingpage.defaultProps = {
+     isLogedIn: "0",
+};
